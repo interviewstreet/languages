@@ -101,6 +101,11 @@ default['ruby']['home'] = '/usr/local/ruby'
 # Rust
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io).join(" = \"*\"\n") + (' = "*"')
 
+# Racket
+default['racket']['version'] = '6.8'
+default['racket']['home'] = '/usr/local/racket'
+default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
+
 # Python 2 & 3
 default['poise-python']['install_python2'] = true
 default['poise-python']['install_python3'] = true
@@ -139,7 +144,7 @@ default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{de
 # Groovy
 default['groovy']['version'] = "2.4.12"
 default['groovy']['url'] = "https://dl.bintray.com/groovy/maven/apache-groovy-sdk-#{default[:groovy][:version]}.zip"
-default['groovy']['checksum'] = "bd7ed4b02379c1b2c70b9a87502be042bc0b53a8be3684a0c9961f299cbf418d"
+default['groovy']['checksum'] = "2dea0d021d74184ca2659f964d88b7e7c849e9e694b74289da682834f425bbb0"
 
 # Haxe
 default['haxe']['lib_home'] = '/usr/local/haxelibs'

@@ -349,11 +349,11 @@ end
 
 ## install Rust
 remote_file '/tmp/rustup.sh' do
-    user 'root'
-    mode '0755'
-    source 'https://static.rust-lang.org/rustup.sh'
-    notifies :run, "execute[install-rust]", :immediately
-  end
+  user 'root'
+  mode '0755'
+  source 'https://static.rust-lang.org/rustup.sh'
+  notifies :run, "execute[install-rust]", :immediately
+end
 
 execute 'install-rust' do
   command '/tmp/rustup.sh --yes'
@@ -619,11 +619,26 @@ end
 ## Install pascal
 package 'fpc'
 
+# Racket 6.10.1 is crashing during execution. Installing previous version for the time being
+# ## Install Racket
+# apt_repository 'latest-racket' do
+#   uri          'ppa:plt/racket'
+# end
+# package 'racket'
+
 ## Install Racket
-apt_repository 'latest-racket' do
-  uri          'ppa:plt/racket'
+remote_file '/tmp/racket-linux.sh' do
+  user 'root'
+  mode '0755'
+  source node[:racket][:url]
+  notifies :run, "execute[install-racket]", :immediately
 end
-package 'racket'
+
+execute 'install-racket' do
+  command "bash /tmp/racket-linux.sh --unix-style --dest #{node[:racket][:home]} --create-dir"
+  user 'root'
+  action :nothing
+end
 
 # TODO: libgfortran seem to go missing at this stage
 execute 'force-install-libgfortran' do
@@ -664,7 +679,7 @@ end
 tar_extract node[:julia][:url] do
   user 'root'
   target_dir node[:julia][:home]
-  creates node[:nim][:home] + '/bin'
+  creates node[:julia][:home] + '/bin'
   tar_flags [ '-P', '--strip-components 1' ]
 end
 
