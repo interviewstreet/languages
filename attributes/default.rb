@@ -99,7 +99,7 @@ default['ruby']['version'] = '2.4.2'
 default['ruby']['home'] = '/usr/local/ruby'
 
 # Rust
-default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io).join(" = \"*\"\n") + (' = "*"')
+default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
 default['racket']['version'] = '6.8'
