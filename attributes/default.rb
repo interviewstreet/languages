@@ -52,7 +52,8 @@ default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{defau
 default["scala"]["checksum"] = "9554a0ca31aa8701863e881281b1772370a87e993ce785bb24505f2431292a21"
 default['scala']['home'] = '/usr/local/scala'
 default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M13/scalaz-core_2.12-7.3.0-M13.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/0.9.0/cats-core_2.12-0.9.0.jar)
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.0.1/cats-core_2.12-1.0.1.jar
+	http://central.maven.org/maven2/org/typelevel/cats-kernel_2.12/1.0.1/cats-kernel_2.12-1.0.1.jar)
 
 default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.10/0.6.0/algebird-core_2.10-0.6.0.jar
 	http://central.maven.org/maven2/com/twitter/algebird-util_2.10/0.6.0/algebird-util_2.10-0.6.0.jar
