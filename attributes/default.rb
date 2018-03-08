@@ -13,15 +13,17 @@ default['java']['accept_license_agreement'] = true
 # Java Version
 default['java7']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz'
 default['java8']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz'
+default['java9']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-9.0.4_linux-x64_bin.tar.gz'
 default['java7']['home'] = '/usr/lib/jvm/java-7-sun'
 default['java8']['home'] = '/usr/lib/jvm/java-8-sun'
+default['java9']['home'] = '/usr/lib/jvm/java-9-sun'
 default['java']['ml_home'] = '/var/ml/java'
 if node['platform'] == 'ubuntu'
   default['java']['libraries_home'] = '/usr/share/java'
 else
 default['java']['libraries_home'] = '/usr/local/java_libs'
 end
-default['java']['additional_libraries'] = ['http://search.maven.org/remotecontent?filepath=org/testng/testng/6.8.8/testng-6.8.8.jar',
+default['java']['additional_libraries'] = ['http://search.maven.org/remotecontent?filepath=org/testng/testng/6.13.1/testng-6.13.1.jar',
 	'http://search.maven.org/remotecontent?filepath=com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar',
 	'http://search.maven.org/remotecontent?filepath=org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar',
 	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.2/gson-2.8.2.jar']
@@ -35,7 +37,7 @@ default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechec
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
-default['go']['version'] = '1.9.1'
+default['go']['version'] = '1.10'
 default['go']['install_dir'] = '/usr/local'
 default['go']['gopath'] = '/user/local/go'
 default['go']['gobin'] = '/user/local/go/bin'
@@ -55,14 +57,14 @@ default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecon
 	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.0.1/cats-core_2.12-1.0.1.jar
 	http://central.maven.org/maven2/org/typelevel/cats-kernel_2.12/1.0.1/cats-kernel_2.12-1.0.1.jar)
 
-default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.10/0.6.0/algebird-core_2.10-0.6.0.jar
-	http://central.maven.org/maven2/com/twitter/algebird-util_2.10/0.6.0/algebird-util_2.10-0.6.0.jar
-	http://central.maven.org/maven2/com/twitter/algebird-bijection_2.10/0.6.0/algebird-bijection_2.10-0.6.0.jar
-	http://central.maven.org/maven2/com/twitter/algebird-test_2.10/0.6.0/algebird-test_2.10-0.6.0.jar
-	http://central.maven.org/maven2/com/twitter/algebird_2.10/0.6.0/algebird_2.10-0.6.0.jar)
+default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.12/0.13.4/algebird-core_2.12-0.13.4.jar
+	http://central.maven.org/maven2/com/twitter/algebird-util_2.12/0.13.4/algebird-util_2.12-0.13.4.jar
+	http://central.maven.org/maven2/com/twitter/algebird-bijection_2.12/0.13.4/algebird-bijection_2.12-0.13.4.jar
+	http://central.maven.org/maven2/com/twitter/algebird-test_2.12/0.13.4/algebird-test_2.12-0.13.4.jar
+	http://central.maven.org/maven2/com/twitter/algebird_2.11/0.12.2/algebird_2.11-0.12.2.jar)
 
 # .Net
-default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.0.0'
+default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.1.4'
 
 # Mono Csharp
 default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libmono-system-design4.0-cil
@@ -71,7 +73,7 @@ default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libm
 	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil)
 
 # PHP
-default['php']['additional_libraries'] = %w(php7.0-cli php7.0-json php7.0-gmp php7.0-common php7.0-mbstring php7.0-bcmath php7.0-ctype php7.0-xml)
+default['php']['additional_libraries'] = %w(php7.2-cli php7.2-json php7.2-gmp php7.2-common php7.2-mbstring php7.2-bcmath php7.2-ctype php7.2-xml)
 
 # R
 default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class g.data cluster
@@ -88,7 +90,7 @@ default['perl']['additional_ml_libraries'] = ['Text::NSP', 'PDL']
 default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'Stats', 'XML::Class', 'Math::Matrix', 'Math::Vector']
 
 # Nim
-default['nim']['version'] = '0.17.2'
+default['nim']['version'] = '0.18.0'
 default['nim']['home'] = '/usr/local/nim'
 
 # MIT Scheme
@@ -96,14 +98,14 @@ default['mitscheme']['version'] = '9.2'
 default['mitscheme']['home'] = '/tmp/mitscheme'
 
 # Ruby
-default['ruby']['version'] = '2.4.2'
+default['ruby']['version'] = '2.5.0'
 default['ruby']['home'] = '/usr/local/ruby'
 
 # Rust
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
-default['racket']['version'] = '6.8'
+default['racket']['version'] = '6.12'
 default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
@@ -117,11 +119,11 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
-default['pypy']['version'] = 'pypy2-v5.9.0'
+default['pypy']['version'] = 'pypy2-v5.10.0'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = 'pypy3-v5.9.0'
+default['pypy3']['version'] = 'pypy3-v5.10.1'
 default['pypy3']['home'] = '/usr/local/pypy3'
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
 # Pypy packages
@@ -129,23 +131,23 @@ default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4
 default['pypy']['additional_ml_libraries'] = ['numpy', 'sympy', 'nltk']
 
 # SBCL
-default['sbcl']['version'] = '1.4.0'
+default['sbcl']['version'] = '1.4.5'
 
 # Lolcode
 default['lolcode']['home'] = '/usr/local/lolcode'
 
 # Kotlin
-default['kotlin']['version'] = '1.1.51'
+default['kotlin']['version'] = '1.2.30'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '0.6.0'
+default['julia']['version'] = '0.6.2'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
-default['groovy']['version'] = "2.4.12"
+default['groovy']['version'] = "2.4.13"
 default['groovy']['url'] = "https://dl.bintray.com/groovy/maven/apache-groovy-sdk-#{default[:groovy][:version]}.zip"
-default['groovy']['checksum'] = "2dea0d021d74184ca2659f964d88b7e7c849e9e694b74289da682834f425bbb0"
+default['groovy']['checksum'] = "2c421ed4814d1a37b499fac3c714f4c4e1de22a7776cfbbcf1475bf09397d0c7"
 
 # Haxe
 default['haxe']['lib_home'] = '/usr/local/haxelibs'
@@ -163,13 +165,13 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 	base-unicode-symbols basic-prelude bifunctors).join(" ")
 
 # Ocaml
-default['ocaml']['version'] = '4.05.0'
+default['ocaml']['version'] = '4.06.1'
 default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
 # Clojure
-default['clojure']['additional_libraries'] = ['https://search.maven.org/remotecontent?filepath=org/clojure/clojure/1.8.0/clojure-1.8.0.jar',
-	'https://repo1.maven.org/maven2/org/clojure/data.int-map/0.2.1/data.int-map-0.2.1.jar',
+default['clojure']['additional_libraries'] = ['https://search.maven.org/remotecontent?filepath=org/clojure/clojure/1.9.0/clojure-1.9.0.jar',
+	'https://repo1.maven.org/maven2/org/clojure/data.int-map/0.2.4/data.int-map-0.2.4.jar',
 	'http://search.maven.org/remotecontent?filepath=org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar',
-	'http://search.maven.org/remotecontent?filepath=org/clojure/core.logic/0.8.10/core.logic-0.8.10.jar',
+	'http://search.maven.org/remotecontent?filepath=org/clojure/core.logic/0.8.11/core.logic-0.8.11.jar',
 	'http://search.maven.org/remotecontent?filepath=org/clojure/data.json/0.2.6/data.json-0.2.6.jar']
