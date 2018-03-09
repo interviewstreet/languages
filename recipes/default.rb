@@ -71,6 +71,15 @@ java_ark "install-jdk-8" do
     bin_cmds ["java", "javac"]
     action :install
 end
+
+## Install JAVA 9
+java_ark "install-jdk-9" do
+    url node[:java9][:url]
+    app_home node[:java9][:home]
+    bin_cmds ["java", "javac"]
+    action :install
+end
+
 execute 'set-java-home' do
   user 'root'
   command <<-EOH
