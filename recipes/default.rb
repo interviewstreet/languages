@@ -76,7 +76,6 @@ end
 java_ark "install-jdk-9" do
     url node[:java9][:url]
     app_home node[:java9][:home]
-    bin_cmds ["java", "javac"]
     action :install
 end
 
