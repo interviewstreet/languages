@@ -46,7 +46,7 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
 default['nodejs']['version'] = '8.10.0'
-dedfault['nodejs']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
+default['nodejs']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
 default['nodejs']['npm_packages'] = [{'name' => 'coffee-script'}, {'name' => 'typescript'},
 	{'name' => 'underscore'}, {'name' => 'lodash'}, {'name' => 'jquery'}, {'name' => 'bignumber.js'}]
 
