@@ -791,7 +791,7 @@ end
 node['perl6']['additional_libraries'].each do |library|
   execute "install-perl6-#{library}" do
     user 'root'
-    command "/tmp/zef/bin/zef install #{library}"
+    command "/usr/lib/perl6/site/bin/zef install #{library}"
   end
 end
 
