@@ -2,7 +2,7 @@
 default['cpp']['ml_home'] = '/var/ml/cpp'
 default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.22',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/libsvm.cgi?+http://www.csie.ntu.edu.tw/~cjlin/libsvm+tar.gz'},
-	{'name' => 'liblinear-2.11',
+	{'name' => 'liblinear-2.20',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/liblinear.cgi?+http://www.csie.ntu.edu.tw/~cjlin/liblinear+tar.gz'}]
 
 # Java
@@ -46,7 +46,7 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
 default['nodejs']['version'] = '8.10.0'
-default['nodejs']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
+default['nodejs']['binary']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
 default['nodejs']['npm_packages'] = [{'name' => 'coffee-script'}, {'name' => 'typescript'},
 	{'name' => 'underscore'}, {'name' => 'lodash'}, {'name' => 'jquery'}, {'name' => 'bignumber.js'}]
 
@@ -82,7 +82,7 @@ default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class
 	numDeriv scales codetools permute date spatial psy digest pwt statmod stringr
 	iterators lattice latticeExtra timeDate evaluate tseries fastcluster fBasics
 	XML Matrix rjson zoo car plyr sqldf dplyr lubridate randomForest survival data.table
-	parallel xts neuralnet e1071 caret deepnet darch tm bit64 glmnet forecast reshape2 xgboost readr)
+	parallel xts neuralnet e1071 caret deepnet tm bit64 glmnet forecast reshape2 xgboost readr)
 
 # Perl
 default['perl']['ml_home'] = '/var/ml/perl'
