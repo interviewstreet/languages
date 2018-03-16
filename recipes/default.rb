@@ -214,8 +214,13 @@ package node['mono']['additional_libraries']
 ## VBNC
 package 'mono-vbnc'
 
-## Install PHP7
-include_recipe "php"
+## PHP7.2
+apt_repository 'latest-php7.2' do
+  uri          'ppa:ondrej/php'
+end
+package 'php7.2'
+
+## Install PHP7.2
 package node['php']['additional_libraries']
 
 remote_file '/usr/local/bin/phpunit' do
