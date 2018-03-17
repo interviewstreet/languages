@@ -73,9 +73,10 @@ java_ark "install-jdk-8" do
 end
 
 ## Install JAVA 9
-java_ark "install-jdk-9" do
+ark "install-jdk-9" do
     url node[:java9][:url]
-    app_home node[:java9][:home]
+    version node['java9']['version']
+    path node[:java9][:home]
     action :install
 end
 

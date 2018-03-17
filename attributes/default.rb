@@ -17,6 +17,7 @@ default['java9']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-jav
 default['java7']['home'] = '/usr/lib/jvm/java-7-sun'
 default['java8']['home'] = '/usr/lib/jvm/java-8-sun'
 default['java9']['home'] = '/usr/lib/jvm/java-9-sun'
+default['java9']['version'] = '9.0.4'
 default['java']['ml_home'] = '/var/ml/java'
 if node['platform'] == 'ubuntu'
   default['java']['libraries_home'] = '/usr/share/java'
