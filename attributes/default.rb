@@ -107,7 +107,7 @@ default['ruby']['home'] = '/usr/local/ruby'
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
-default['racket']['version'] = '6.12'
+default['racket']['version'] = '6.9'
 default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
@@ -173,6 +173,7 @@ default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind
 
 # Clojure
 default['clojure']['additional_libraries'] = ['https://search.maven.org/remotecontent?filepath=org/clojure/clojure/1.9.0/clojure-1.9.0.jar',
+	'https://search.maven.org/remotecontent?filepath=org/clojure/spec.alpha/0.1.143/spec.alpha-0.1.143.jar',
 	'https://repo1.maven.org/maven2/org/clojure/data.int-map/0.2.4/data.int-map-0.2.4.jar',
 	'http://search.maven.org/remotecontent?filepath=org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar',
 	'http://search.maven.org/remotecontent?filepath=org/clojure/core.logic/0.8.11/core.logic-0.8.11.jar',
