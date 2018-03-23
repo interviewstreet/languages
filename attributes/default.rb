@@ -48,8 +48,7 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 default['nodejs']['install_method'] = 'binary'
 default['nodejs']['version'] = '8.10.0'
 default['nodejs']['binary']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
-default['nodejs']['npm_packages'] = [{'name' => 'coffee-script'}, {'name' => 'typescript'},
-	{'name' => 'underscore'}, {'name' => 'lodash'}, {'name' => 'jquery'}, {'name' => 'bignumber.js'}]
+default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
 
 # Scala
 default["scala"]["version"] = "2.12.4"
