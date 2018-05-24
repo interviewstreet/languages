@@ -2,7 +2,7 @@
 
 languages chef cookbook is the infrastructure code to install all the languages, frameowrks and libraries that are supported in codechecker. Codechecker infrastructure runs on Ubuntu 16.04 (LTS) AMD64 virtualized c3.large EC2 instances.
 
-[attributes](https://github.com/interviewstreet/languages/tree/master/attributes) folder consists of all the configuration information, language / frameowrk versions and installation URLs  
+[attributes](https://github.com/interviewstreet/languages/tree/master/attributes) folder consists of all the configuration information, language / framework versions and installation URLs  
 [recipes](https://github.com/interviewstreet/languages/tree/master/recipes) folder contains actual installation scripts
 
 ## Updating language version
@@ -29,9 +29,9 @@ default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'S
 ## New language request for codechecker
 Create a pull request with following changes:
 1. Add necessary installation steps into attributes & recipes folder.  
-	**NOTE:** i. Stick with stable release for all installation. We don't prefer nightly builds as image reverts can be time consuming  
-		ii. Make sure you also provide installation for necessary basic libraries and data-structures  
+	**NOTE:** i. Stick with stable releases for all installation. Nightly builds & unstable releases won't be accepted as server image reverts can be time consuming  
+		ii. Make sure you also add installation steps for necessary basic libraries and data-structures  
 	
 2. Code to read 2 values from STDIN and write the sum of those two integers to STDOUT. [Refer](https://www.hackerrank.com/challenges/solve-me-first)
-3. Compile & Execution command for the above code
+3. Generic compilation & execution command for the language
 	
