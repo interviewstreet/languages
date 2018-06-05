@@ -113,7 +113,9 @@ default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[
 
 # Python 2 & 3
 default['poise-python']['install_python2'] = true
-default['poise-python']['install_python3'] = true
+default['poise-python']['install_python3'] = false
+
+default['python3']['version'] = 3.6
 
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'

@@ -341,6 +341,20 @@ end
 ## Install Python 2 & 3
 include_recipe 'poise-python'
 
+## Install Python 3.6
+apt_repository 'latest-python3' do
+    uri        'ppa:jonathonf/python-3.6'
+end
+
+package 'python' + node['python3']['version']
+
+alternatives 'python3 alternatives' do
+  link_name 'python3'
+  path '/usr/bin/python' + node['python3']['version']
+  priority 100
+  action :install
+end
+
 ## Install Python 2 packages
 python_runtime '2'
 python_package node[:python][:additional_libraries]
