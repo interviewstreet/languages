@@ -172,6 +172,7 @@ default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
 # Clojure
+default['clojure']['version'] = '1.9.0.381'
 default['clojure']['additional_libraries'] = ['https://search.maven.org/remotecontent?filepath=org/clojure/clojure/1.9.0/clojure-1.9.0.jar',
 	'https://search.maven.org/remotecontent?filepath=org/clojure/spec.alpha/0.1.143/spec.alpha-0.1.143.jar',
 	'https://repo1.maven.org/maven2/org/clojure/data.int-map/0.2.4/data.int-map-0.2.4.jar',
