@@ -718,14 +718,7 @@ node[:clojure][:additional_libraries]. each do |library|
   end
 end
 
-execute "install-clojure-#{node[:clojure][:version]}" do
-  user "root"
-  command <<-EOH
-    curl -O https://download.clojure.org/install/linux-install-#{node[:clojure][:version]}.sh
-    chmod +x linux-install-#{node[:clojure][:version]}.sh
-    sudo ./linux-install-#{node[:clojure][:version]}.sh
-  EOH
-end
+include_recipe 'lein::default'
 
 ## Install Perl
 # # Upgrade perl
