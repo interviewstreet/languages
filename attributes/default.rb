@@ -86,7 +86,7 @@ default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class
 
 # Perl
 default['perl']['ml_home'] = '/var/ml/perl'
-default['perl']['additional_libraries'] = ['Set::Scalar', 'Math::SparseVector', 'Math::SparseMatrix']
+default['perl']['additional_libraries'] = ['JSON::Class', 'XML::Class', 'Set::Scalar', 'Math::SparseVector', 'Math::SparseMatrix']
 default['perl']['additional_ml_libraries'] = ['Text::NSP', 'PDL']
 # Perl 6
 default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'Stats', 'XML::Class', 'Math::Matrix', 'Math::Vector']
