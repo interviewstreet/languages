@@ -172,9 +172,13 @@ default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
 # Clojure
-default['clojure']['additional_libraries'] = ['https://search.maven.org/remotecontent?filepath=org/clojure/clojure/1.9.0/clojure-1.9.0.jar',
-	'https://search.maven.org/remotecontent?filepath=org/clojure/spec.alpha/0.1.143/spec.alpha-0.1.143.jar',
-	'https://repo1.maven.org/maven2/org/clojure/data.int-map/0.2.4/data.int-map-0.2.4.jar',
-	'http://search.maven.org/remotecontent?filepath=org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar',
-	'http://search.maven.org/remotecontent?filepath=org/clojure/core.logic/0.8.11/core.logic-0.8.11.jar',
-	'http://search.maven.org/remotecontent?filepath=org/clojure/data.json/0.2.6/data.json-0.2.6.jar']
+default['clojure']['additional_libraries'] = [
+	{name: 'algo.generic', version: '0.1.3'},
+    {name: 'alog.monads', version: '0.1.6'},
+    {name: 'core.logic', version: '0.8.11'},
+    {name: 'data.avl', version: '0.0.17'},
+    {name: 'data.int-map', version: '0.2.4'},
+    {name: 'data.json', version: '0.2.6'},
+    {name: 'data.priority-map', version: '0.0.10'},
+    {name: 'data.xml', version: '0.2.0-alpha5'},
+    {name: 'spec.alpha', version: '0.2.168'}]

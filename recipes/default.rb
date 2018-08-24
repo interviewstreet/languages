@@ -710,14 +710,14 @@ package 'gprolog'
 package 'smlnj'
 
 ## Install Clojure
+package 'clojure'
 node[:clojure][:additional_libraries]. each do |library|
-  basename = File.basename(library).gsub(/-\d+.\d+.\d+/, '')
+  basename = File.basename(library)
   remote_file (node[:java][:libraries_home] + '/' + basename) do
     user 'root'
-    source library
+    source "https://search.maven.org/remotecontent?filepath=org/clojure/#{library[:name]}/#{library[:version]}/#{library[:name]}-#{library[:version]}.jar"
   end
 end
-package 'clojure1.6'
 
 ## Install Perl
 # # Upgrade perl
