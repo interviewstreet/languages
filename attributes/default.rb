@@ -51,13 +51,15 @@ default['nodejs']['binary']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead65
 default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
 
 # Scala
-default["scala"]["version"] = "2.12.4"
+default["scala"]["version"] = "2.12.6"
 default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{default[:scala][:version]}.tgz"
 default["scala"]["checksum"] = "9554a0ca31aa8701863e881281b1772370a87e993ce785bb24505f2431292a21"
 default['scala']['home'] = '/usr/local/scala'
-default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M13/scalaz-core_2.12-7.3.0-M13.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.0.1/cats-core_2.12-1.0.1.jar
-	http://central.maven.org/maven2/org/typelevel/cats-kernel_2.12/1.0.1/cats-kernel_2.12-1.0.1.jar)
+default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M24/scalaz-core_2.12-7.3.0-M24.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/1.2.0/cats-macros_2.12-1.2.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-kernel_2.12/1.2.0/cats-kernel_2.12-1.2.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.2.0/cats-core_2.12-1.2.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-free_2.12/1.2.0/cats-free_2.12-1.2.0.jar)
 
 default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.12/0.13.4/algebird-core_2.12-0.13.4.jar
 	http://central.maven.org/maven2/com/twitter/algebird-util_2.12/0.13.4/algebird-util_2.12-0.13.4.jar
