@@ -114,6 +114,7 @@ default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[
 # Python 2 & 3
 default['poise-python']['install_python2'] = true
 default['poise-python']['install_python3'] = true
+default['poise-python']['install_pypy'] = true
 
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'
@@ -121,11 +122,11 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
-default['pypy']['version'] = 'pypy2-v5.10.0'
+default['pypy']['version'] = 'pypy2-6.0.0'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = 'pypy3-v5.10.1'
+default['pypy3']['version'] = 'pypy3.5-6.0.0'
 default['pypy3']['home'] = '/usr/local/pypy3'
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
 # Pypy packages

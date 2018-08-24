@@ -361,6 +361,34 @@ python_package (node[:python][:additional_libraries] + node[:python][:additional
   virtualenv node[:python3][:ml_home]
 end
 
+## Install PYPY 2
+python_runtime 'pypy' do
+  provider :portable_pypy
+  version node[:pypy][:version]
+  options folder: node[:pypy][:home]
+end
+python_package node[:python][:additional_libraries]
+
+## Install PYPY 2 ML virtualenv
+python_virtualenv node[:pypy][:ml_home]
+python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
+  virtualenv node[:pypy][:ml_home]
+end
+
+## Install PYPY 3
+python_runtime 'pypy3' do
+  provider :portable_pypy3
+  version node[:pypy3][:version]
+  options folder: node[:pypy3][:home]
+end
+python_package node[:python][:additional_libraries]
+
+## Install PYPY 3 ML virtualenv
+python_virtualenv node[:pypy3][:ml_home]
+python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
+  virtualenv node[:pypy3][:ml_home]
+end
+
 ## install Rust
 remote_file '/tmp/rustup.sh' do
   user 'root'
@@ -525,110 +553,6 @@ execute 'install-ocaml-packages' do
     opam upgrade --yes
   EOH
 end
-
-## Install PYPY 2&3
-[node[:pypy][:home], node[:pypy3][:home]].each do |dir|
-  directory dir do
-    owner 'root'
-    group 'root'
-    mode '0755'
-    action :create
-    not_if { ::Dir.exists? dir }
-  end
-end
-
-tar_extract "https://bitbucket.org/pypy/pypy/downloads/#{node[:pypy][:version]}-linux64.tar.bz2" do
-  user 'root'
-  target_dir node[:pypy][:home]
-  creates node[:pypy][:home] + "/bin"
-  compress_char 'j'
-  tar_flags [ '-P', '--strip-components 1' ]
-  notifies :run, "execute[setup-pypy-pip]", :immediately
-end
-
-execute 'setup-pypy-pip' do
-  user 'root'
-  cwd node[:pypy][:home]
-  command <<-EOH
-    bin/pypy -m ensurepip
-    bin/pip update
-    bin/pip install #{node[:pypy][:additional_libraries].join(' ')}
-  EOH
-  action :nothing
-end
-
-tar_extract "https://bitbucket.org/pypy/pypy/downloads/#{node[:pypy3][:version]}-linux64.tar.bz2" do
-  user 'root'
-  target_dir node[:pypy3][:home]
-  creates node[:pypy3][:home] + "/bin"
-  compress_char 'j'
-  tar_flags [ '-P', '--strip-components 1' ]
-  notifies :run, "execute[setup-pypy3-pip]", :immediately
-end
-
-execute 'setup-pypy3-pip' do
-  user 'root'
-  cwd node[:pypy3][:home]
-  command <<-EOH
-    bin/pypy3 -m ensurepip
-    bin/pip3 update
-    bin/pip3 install #{node[:pypy][:additional_libraries].join(' ')}
-  EOH
-  action :nothing
-end
-
-execute 'setup-pypy-ml' do
-  user 'root'
-  command <<-EOH
-    virtualenv -p #{node[:pypy][:home]}/bin/pypy #{node[:pypy][:ml_home]}
-    source #{node[:pypy][:ml_home]}/bin/activate
-    #{node[:pypy][:ml_home]}/bin/pip install #{node[:pypy][:additional_libraries].join(" ")}
-    #{node[:pypy][:ml_home]}/bin/pip install #{node[:pypy][:additional_ml_libraries].join(" ")}
-  EOH
-  #live_stream true if Chef::Resource::Execute.method_defined?(:live_stream)
-  not_if { ::Dir.exists? node[:pypy][:ml_home] }
-end
-
-execute 'setup-pypy3-ml' do
-  user 'root'
-  command <<-EOH
-    virtualenv -p #{node[:pypy3][:home]}/bin/pypy3 #{node[:pypy3][:ml_home]}
-    source #{node[:pypy3][:ml_home]}/bin/activate
-    #{node[:pypy3][:ml_home]}/bin/pip3 install #{node[:pypy][:additional_libraries].join(" ")}
-    #{node[:pypy3][:ml_home]}/bin/pip3 install #{node[:pypy][:additional_ml_libraries].join(" ")}
-  EOH
-  #live_stream true if Chef::Resource::Execute.method_defined?(:live_stream)
-  not_if { ::Dir.exists? node[:pypy3][:ml_home] }
-end
-
-## pypy installation is broken in the recipe poise-python
-# ## Install PYPY 2
-# python_runtime 'pypy' do
-#   provider :portable_pypy
-#   version node[:pypy][:version]
-#   options folder: node[:pypy][:home]
-# end
-# python_package node[:python][:additional_libraries]
-
-# ## Install PYPY 2 ML virtualenv
-# python_virtualenv node[:pypy][:ml_home]
-# python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
-#   virtualenv node[:pypy][:ml_home]
-# end
-
-# ## Install PYPY 3
-# python_runtime 'pypy3' do
-#   provider :portable_pypy3
-#   version node[:pypy3][:version]
-#   options folder: node[:pypy3][:home]
-# end
-# python_package node[:python][:additional_libraries]
-
-# ## Install PYPY 3 ML virtualenv
-# python_virtualenv node[:pypy3][:ml_home]
-# python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
-#   virtualenv node[:pypy3][:ml_home]
-# end
 
 ## Install pascal
 package 'fpc'
