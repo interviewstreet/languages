@@ -121,7 +121,7 @@ default['poise-python']['install_pypy'] = true
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'
 default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4)
-default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
+default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels pycrypto)
 
 # Pypy 2
 default['pypy']['version'] = 'pypy2-6.0.0'
