@@ -1,6 +1,6 @@
 # C & C++
 default['cpp']['ml_home'] = '/var/ml/cpp'
-default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.22',
+default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.23',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/libsvm.cgi?+http://www.csie.ntu.edu.tw/~cjlin/libsvm+tar.gz'},
 	{'name' => 'liblinear-2.20',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/liblinear.cgi?+http://www.csie.ntu.edu.tw/~cjlin/liblinear+tar.gz'}]
@@ -24,21 +24,21 @@ if node['platform'] == 'ubuntu'
 else
 default['java']['libraries_home'] = '/usr/local/java_libs'
 end
-default['java']['additional_libraries'] = ['http://search.maven.org/remotecontent?filepath=org/testng/testng/6.13.1/testng-6.13.1.jar',
+default['java']['additional_libraries'] = ['http://search.maven.org/remotecontent?filepath=org/testng/testng/6.14.3/testng-6.14.3.jar',
 	'http://search.maven.org/remotecontent?filepath=com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar',
 	'http://search.maven.org/remotecontent?filepath=org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar',
-	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.2/gson-2.8.2.jar']
+	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar']
 
 default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechecker-install-essentials/stanford-corenlp-full-2013-06-20.zip",
 	"https://s3.amazonaws.com/codechecker-install-essentials/stanford-classifier-2013-06-20.zip",
 	"http://downloads.sourceforge.net/project/java-ml/java-ml/javaml-0.1.7.zip",
 	"http://prdownloads.sourceforge.net/weka/weka-3-6-10.zip",
 	"http://downloads.sourceforge.net/project/weka/weka-packages/LibSVM1.0.5.zip",
-	"http://downloads.sourceforge.net/project/ajt/ajt/ajt-2.9.zip",
+	"http://downloads.sourceforge.net/project/ajt/ajt/ajt-2.11.zip",
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
-default['go']['version'] = '1.10'
+default['go']['version'] = '1.11'
 default['go']['install_dir'] = '/usr/local'
 default['go']['gopath'] = '/user/local/go'
 default['go']['gobin'] = '/user/local/go/bin'
@@ -46,8 +46,8 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
-default['nodejs']['version'] = '8.10.0'
-default['nodejs']['binary']['checksum'] = '92220638d661a43bd0fee2bf478cb283ead6524f231aabccf14c549ebc2bc338'
+default['nodejs']['version'] = '8.11.4'
+default['nodejs']['binary']['checksum'] = '85ea7cbb5bf624e130585bfe3946e99c85ce5cb84c2aee474038bdbe912f908c'
 default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
 
 # Scala
@@ -102,14 +102,14 @@ default['mitscheme']['version'] = '9.2'
 default['mitscheme']['home'] = '/tmp/mitscheme'
 
 # Ruby
-default['ruby']['version'] = '2.5.0'
+default['ruby']['version'] = '2.5.1'
 default['ruby']['home'] = '/usr/local/ruby'
 
 # Rust
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
-default['racket']['version'] = '6.9'
+default['racket']['version'] = '7.0'
 default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
@@ -136,23 +136,23 @@ default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4
 default['pypy']['additional_ml_libraries'] = ['numpy', 'sympy', 'nltk']
 
 # SBCL
-default['sbcl']['version'] = '1.4.5'
+default['sbcl']['version'] = '1.4.10'
 
 # Lolcode
 default['lolcode']['home'] = '/usr/local/lolcode'
 
 # Kotlin
-default['kotlin']['version'] = '1.2.30'
+default['kotlin']['version'] = '1.2.61'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '0.6.2'
+default['julia']['version'] = '1.0.0'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
-default['groovy']['version'] = "2.4.13"
+default['groovy']['version'] = "2.5.2"
 default['groovy']['url'] = "https://dl.bintray.com/groovy/maven/apache-groovy-sdk-#{default[:groovy][:version]}.zip"
-default['groovy']['checksum'] = "2c421ed4814d1a37b499fac3c714f4c4e1de22a7776cfbbcf1475bf09397d0c7"
+default['groovy']['checksum'] = "82cf4f424a431b0ebab97e7302cfbe7c0b15cd5d2ff87cb0d9af5003e2ea247b"
 
 # Haxe
 default['haxe']['lib_home'] = '/usr/local/haxelibs'
@@ -170,7 +170,7 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 	base-unicode-symbols basic-prelude bifunctors).join(" ")
 
 # Ocaml
-default['ocaml']['version'] = '4.06.1'
+default['ocaml']['version'] = '4.07.0'
 default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
