@@ -12,7 +12,7 @@ default['java']['accept_license_agreement'] = true
 
 # Java Version
 default['java7']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz'
-default['java8']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u144-linux-x64.tar.gz'
+default['java8']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u152-linux-x64.tar.gz'
 default['java9']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-9.0.4_linux-x64_bin.tar.gz'
 default['java7']['home'] = '/usr/lib/jvm/java-7-sun'
 default['java8']['home'] = '/usr/lib/jvm/java-8-sun'
@@ -53,7 +53,7 @@ default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore'
 # Scala
 default["scala"]["version"] = "2.12.6"
 default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{default[:scala][:version]}.tgz"
-default["scala"]["checksum"] = "9554a0ca31aa8701863e881281b1772370a87e993ce785bb24505f2431292a21"
+default["scala"]["checksum"] = "1ac7444c5a85ed1ea45db4a268ee9ea43adf80e7f5724222863afb5492883416"
 default['scala']['home'] = '/usr/local/scala'
 default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M24/scalaz-core_2.12-7.3.0-M24.jar
 	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/1.2.0/cats-macros_2.12-1.2.0.jar
