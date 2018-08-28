@@ -636,7 +636,7 @@ package 'smlnj'
 ## Install Clojure
 package 'clojure'
 node[:clojure][:additional_libraries]. each do |library|
-  basename = File.basename(library)
+  basename = library[:name] + '.jar'
   remote_file (node[:java][:libraries_home] + '/' + basename) do
     user 'root'
     source "https://search.maven.org/remotecontent?filepath=org/clojure/#{library[:name]}/#{library[:version]}/#{library[:name]}-#{library[:version]}.jar"
