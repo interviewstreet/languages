@@ -34,7 +34,7 @@ default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechec
 	"http://downloads.sourceforge.net/project/java-ml/java-ml/javaml-0.1.7.zip",
 	"http://prdownloads.sourceforge.net/weka/weka-3-6-10.zip",
 	"http://downloads.sourceforge.net/project/weka/weka-packages/LibSVM1.0.5.zip",
-	"http://downloads.sourceforge.net/project/ajt/ajt/ajt-2.11.zip",
+	"http://downloads.sourceforge.net/project/ajt/ajt/ajt-2.9.zip",
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
@@ -124,12 +124,13 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels pycrypto)
 
 # Pypy 2
-default['pypy']['version'] = 'pypy2-6.0.0'
+default['pypy']['version'] = '6.0.0'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = 'pypy3.5-6.0.0'
+default['pypy3']['version'] = '6.0.0'
 default['pypy3']['home'] = '/usr/local/pypy3'
+default['pypy3']['url'] = "https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-#{node[:pypy3][:version]}-linux_x86_64-portable.tar.bz2"
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
 # Pypy packages
 default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4']
@@ -177,7 +178,7 @@ default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind
 # Clojure
 default['clojure']['additional_libraries'] = [
 	{name: 'algo.generic', version: '0.1.3'},
-    {name: 'alog.monads', version: '0.1.6'},
+    # {name: 'alog.monads', version: '0.1.6'},
     {name: 'core.logic', version: '0.8.11'},
     {name: 'data.avl', version: '0.0.17'},
     {name: 'data.int-map', version: '0.2.4'},

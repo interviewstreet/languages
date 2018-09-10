@@ -241,7 +241,7 @@ package 'fsharp'
 ## Install R Lang and libraries
 apt_repository "latest-r-base" do
   uri "http://cran.rstudio.com/bin/linux/ubuntu"
-  distribution node['lsb']['codename'] + '/'
+  distribution node['lsb']['codename'] + '-cran35/'
   keyserver 'keyserver.ubuntu.com'
   key 'E084DAB9'
 end
@@ -257,6 +257,8 @@ execute "update-r-lang" do
   command "R -e \"update.packages(checkBuilt = TRUE, ask=FALSE, repos=\'http://cran.us.r-project.org\')\""
   only_if "dpkg -l r-base"
 end
+
+package 'libxml2-dev'
 
 node[:r][:additional_libraries].each do |library|
   execute "install-r-#{library}" do
@@ -379,6 +381,7 @@ python_runtime 'pypy3' do
   provider :portable_pypy3
   version node[:pypy3][:version]
   options folder: node[:pypy3][:home]
+  options url: node[:pypy3][:url]
 end
 python_package node[:python][:additional_libraries]
 
@@ -580,7 +583,7 @@ end
 # TODO: libgfortran seem to go missing at this stage
 execute 'force-install-libgfortran' do
   user 'root'
-  command 'apt-get install --reinstall libgfortran3'
+  command 'apt-get -y install --reinstall libgfortran3'
 end
 
 ## Install Octave
