@@ -178,7 +178,7 @@ default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind
 # Clojure
 default['clojure']['additional_libraries'] = [
 	{name: 'algo.generic', version: '0.1.3'},
-    # {name: 'alog.monads', version: '0.1.6'},
+    {name: 'algo.monads', version: '0.1.6'},
     {name: 'core.logic', version: '0.8.11'},
     {name: 'data.avl', version: '0.0.17'},
     {name: 'data.int-map', version: '0.2.4'},
