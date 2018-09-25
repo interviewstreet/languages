@@ -34,7 +34,7 @@ default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechec
 	"http://downloads.sourceforge.net/project/java-ml/java-ml/javaml-0.1.7.zip",
 	"http://prdownloads.sourceforge.net/weka/weka-3-6-10.zip",
 	"http://downloads.sourceforge.net/project/weka/weka-packages/LibSVM1.0.5.zip",
-	"http://downloads.sourceforge.net/project/ajt/ajt/ajt-2.9.zip",
+	"https://excellmedia.dl.sourceforge.net/project/ajt/ajt-2.11.zip",
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
