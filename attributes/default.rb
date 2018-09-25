@@ -11,13 +11,12 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 default['java']['accept_license_agreement'] = true
 
 # Java Version
-default['java7']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz'
-default['java8']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-8u162-linux-x64.tar.gz'
-default['java9']['url'] = 'http://ftp.osuosl.org/pub/funtoo/distfiles/oracle-java/jdk-9.0.4_linux-x64_bin.tar.gz'
+default['java7']['url'] = 'https://build.funtoo.org/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz'
+default['java8']['url'] = 'https://build.funtoo.org/distfiles/oracle-java/jdk-8u162-linux-x64.tar.gz'
+default['java10']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz'
 default['java7']['home'] = '/usr/lib/jvm/java-7-sun'
 default['java8']['home'] = '/usr/lib/jvm/java-8-sun'
-default['java9']['home'] = '/usr/lib/jvm/java-9-sun'
-default['java9']['version'] = '9.0.4'
+default['java10']['home'] = '/usr/lib/jvm/java-10-sun'
 default['java']['ml_home'] = '/var/ml/java'
 if node['platform'] == 'ubuntu'
   default['java']['libraries_home'] = '/usr/share/java'
