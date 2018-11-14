@@ -2,7 +2,7 @@
 default['cpp']['ml_home'] = '/var/ml/cpp'
 default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.23',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/libsvm.cgi?+http://www.csie.ntu.edu.tw/~cjlin/libsvm+tar.gz'},
-	{'name' => 'liblinear-2.20',
+	{'name' => 'liblinear-2.21',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/liblinear.cgi?+http://www.csie.ntu.edu.tw/~cjlin/liblinear+tar.gz'}]
 
 # Java
@@ -11,12 +11,12 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 default['java']['accept_license_agreement'] = true
 
 # Java Version
-default['java7']['url'] = 'https://build.funtoo.org/distfiles/oracle-java/jdk-7u80-linux-x64.tar.gz'
-default['java8']['url'] = 'https://build.funtoo.org/distfiles/oracle-java/jdk-8u162-linux-x64.tar.gz'
-default['java10']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz'
+default['java7']['url'] = 'http://codechecker-install-essentials.s3.amazonaws.com/jdk-7u80-linux-x64.tar.gz'
+default['java8']['url'] = 'http://codechecker-install-essentials.s3.amazonaws.com/jdk-8u191-linux-x64.tar.gz'
+default['java11']['url'] = 'http://codechecker-install-essentials.s3.amazonaws.com/jdk-11.0.1_linux-x64_bin.tar.gz'
 default['java7']['home'] = '/usr/lib/jvm/java-7-sun'
 default['java8']['home'] = '/usr/lib/jvm/java-8-sun'
-default['java10']['home'] = '/usr/lib/jvm/java-10-sun'
+default['java11']['home'] = '/usr/lib/jvm/java-11-sun'
 default['java']['ml_home'] = '/var/ml/java'
 if node['platform'] == 'ubuntu'
   default['java']['libraries_home'] = '/usr/share/java'
@@ -27,7 +27,9 @@ default['java']['additional_libraries'] = ['http://search.maven.org/remoteconten
 	'http://search.maven.org/remotecontent?filepath=com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar',
 	'http://search.maven.org/remotecontent?filepath=org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar',
 	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar',
-	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta1/httpclient5-5.0-beta1.jar']
+	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta1/httpclient5-5.0-beta1.jar',
+	'http://central.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar',
+	'http://central.maven.org/maven2/com/thaiopensource/jing/20091111/jing-20091111.jar']
 
 default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechecker-install-essentials/stanford-corenlp-full-2013-06-20.zip",
 	"https://s3.amazonaws.com/codechecker-install-essentials/stanford-classifier-2013-06-20.zip",
@@ -109,14 +111,14 @@ default['ruby']['home'] = '/usr/local/ruby'
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
-default['racket']['version'] = '7.0'
+default['racket']['version'] = '7.1'
 default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
 # Python 2 & 3
 default['poise-python']['install_python2'] = true
 default['poise-python']['install_python3'] = true
-default['poise-python']['install_pypy'] = true
+default['poise-python']['install_pypy'] = false
 
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'
@@ -124,16 +126,16 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels pycrypto)
 
 # Pypy 2
-default['pypy']['version'] = '6.0.0'
+default['pypy']['version'] = 'pypy2-v6.0.0'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = '6.0.0'
+default['pypy3']['version'] = 'pypy3-v6.0.0'
 default['pypy3']['home'] = '/usr/local/pypy3'
-default['pypy3']['url'] = "https://bitbucket.org/squeaky/portable-pypy/downloads/pypy3.5-#{node[:pypy3][:version]}-linux_x86_64-portable.tar.bz2"
+#default['pypy3']['url'] = "https://bitbucket.org/squeaky/portable-pypy/downloads/#{node[:pypy3][:version]}-linux_x86_64-portable.tar.bz2"
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
 # Pypy packages
-default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4']
+default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4', 'virtualenv']
 default['pypy']['additional_ml_libraries'] = ['numpy', 'sympy', 'nltk']
 
 # SBCL
@@ -143,11 +145,11 @@ default['sbcl']['version'] = '1.4.10'
 default['lolcode']['home'] = '/usr/local/lolcode'
 
 # Kotlin
-default['kotlin']['version'] = '1.2.61'
+default['kotlin']['version'] = '1.3.0'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '1.0.0'
+default['julia']['version'] = '1.0.1'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy

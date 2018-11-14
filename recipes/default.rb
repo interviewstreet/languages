@@ -72,10 +72,10 @@ java_ark "install-jdk-8" do
     action :install
 end
 
-## Install JAVA 10
-ark "install-jdk-10" do
-    url node[:java10][:url]
-    path node[:java10][:home]
+## Install JAVA 11
+ark "install-jdk-11" do
+    url node[:java11][:url]
+    path node[:java11][:home]
     action :install
 end
 
@@ -347,7 +347,9 @@ python_runtime '2'
 python_package node[:python][:additional_libraries]
 
 ## Install Python 2 ML virtualenv
-python_virtualenv node[:python][:ml_home]
+python_virtualenv node[:python][:ml_home] do
+  pip_version '18.0'
+end
 python_package (node[:python][:additional_libraries] + node[:python][:additional_ml_libraries]) do
   virtualenv node[:python][:ml_home]
 end
@@ -357,38 +359,116 @@ python_runtime '3'
 python_package node[:python][:additional_libraries]
 
 ## Install Python 3 ML virtualenv
-python_virtualenv node[:python3][:ml_home]
+python_virtualenv node[:python3][:ml_home] do
+  pip_version '18.0'
+  python '/usr/bin/python3'
+end
 python_package (node[:python][:additional_libraries] + node[:python][:additional_ml_libraries]) do
   virtualenv node[:python3][:ml_home]
 end
 
-## Install PYPY 2
-python_runtime 'pypy' do
-  provider :portable_pypy
-  version node[:pypy][:version]
-  options folder: node[:pypy][:home]
-end
-python_package node[:python][:additional_libraries]
+# ## Install PYPY 2
+# python_runtime 'pypy' do
+#   provider :portable_pypy
+#   version node[:pypy][:version]
+#   options folder: node[:pypy][:home]
+# end
+# python_package node[:python][:additional_libraries]
 
-## Install PYPY 2 ML virtualenv
-python_virtualenv node[:pypy][:ml_home]
-python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
-  virtualenv node[:pypy][:ml_home]
+# ## Install PYPY 2 ML virtualenv
+# python_virtualenv node[:pypy][:ml_home]
+# python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
+#   virtualenv node[:pypy][:ml_home]
+# end
+
+# ## Install PYPY 3
+# python_runtime 'pypy3' do
+#   provider :portable_pypy3
+#   version node[:pypy3][:version]
+#   options folder: node[:pypy3][:home]
+#   options url: node[:pypy3][:url]
+# end
+# python_package node[:python][:additional_libraries]
+
+# ## Install PYPY 3 ML virtualenv
+# python_virtualenv node[:pypy3][:ml_home]
+# python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
+#   virtualenv node[:pypy3][:ml_home]
+# end
+
+## Install PYPY 2&3
+[node[:pypy][:home], node[:pypy3][:home]].each do |dir|
+  directory dir do
+    owner 'root'
+    group 'root'
+    mode '0755'
+    action :create
+    not_if { ::Dir.exists? dir }
+  end
 end
 
-## Install PYPY 3
-python_runtime 'pypy3' do
-  provider :portable_pypy3
-  version node[:pypy3][:version]
-  options folder: node[:pypy3][:home]
-  options url: node[:pypy3][:url]
+tar_extract "https://bitbucket.org/pypy/pypy/downloads/#{node[:pypy][:version]}-linux64.tar.bz2" do
+  user 'root'
+  target_dir node[:pypy][:home]
+  creates node[:pypy][:home] + "/bin"
+  compress_char 'j'
+  tar_flags [ '-P', '--strip-components 1' ]
+  notifies :run, "execute[setup-pypy-pip]", :immediately
 end
-python_package node[:python][:additional_libraries]
 
-## Install PYPY 3 ML virtualenv
-python_virtualenv node[:pypy3][:ml_home]
-python_package (node[:pypy][:additional_libraries] + node[:pypy][:additional_ml_libraries]) do
-  virtualenv node[:pypy3][:ml_home]
+execute 'setup-pypy-pip' do
+  user 'root'
+  cwd node[:pypy][:home]
+  command <<-EOH
+    bin/pypy -m ensurepip
+    bin/pip update
+    bin/pip install #{node[:pypy][:additional_libraries].join(' ')}
+  EOH
+  action :nothing
+end
+
+tar_extract "https://bitbucket.org/pypy/pypy/downloads/#{node[:pypy3][:version]}-linux64.tar.bz2" do
+  user 'root'
+  target_dir node[:pypy3][:home]
+  creates node[:pypy3][:home] + "/bin"
+  compress_char 'j'
+  tar_flags [ '-P', '--strip-components 1' ]
+  notifies :run, "execute[setup-pypy3-pip]", :immediately
+end
+
+execute 'setup-pypy3-pip' do
+  user 'root'
+  cwd node[:pypy3][:home]
+  command <<-EOH
+    bin/pypy3 -m ensurepip
+    bin/pip3 update
+    bin/pip3 install #{node[:pypy][:additional_libraries].join(' ')}
+  EOH
+  action :nothing
+end
+
+execute 'setup-pypy-ml' do
+  user 'root'
+  command <<-EOH
+    /usr/local/pypy/bin/virtualenv -p #{node[:pypy][:home]}/bin/pypy #{node[:pypy][:ml_home]}
+    source #{node[:pypy][:ml_home]}/bin/activate
+    #{node[:pypy][:ml_home]}/bin/pip install #{node[:pypy][:additional_libraries].join(" ")}
+    #{node[:pypy][:ml_home]}/bin/pip install #{node[:pypy][:additional_ml_libraries].join(" ")}
+  EOH
+  #live_stream true if Chef::Resource::Execute.method_defined?(:live_stream)
+  not_if { ::Dir.exists? node[:pypy][:ml_home] }
+end
+
+execute 'setup-pypy3-ml' do
+  user 'root'
+  command <<-EOH
+    /usr/local/pypy3/bin/virtualenv -p #{node[:pypy3][:home]}/bin/pypy3 #{node[:pypy3][:ml_home]}
+    source #{node[:pypy3][:ml_home]}/bin/activate
+    #{node[:pypy3][:ml_home]}/bin/pip3 install #{node[:pypy][:additional_libraries].join(" ")}
+    #{node[:pypy3][:ml_home]}/bin/pip3 install #{node[:pypy][:additional_ml_libraries].join(" ")}
+  EOH
+  #live_stream true if Chef::Resource::Execute.method_defined?(:live_stream)
+  not_if { ::Dir.exists? node[:pypy3][:ml_home] }
 end
 
 ## install Rust
@@ -416,26 +496,21 @@ execute 'cache-rust-libraries' do
   EOH
 end
 
-## Install Dart lang
-package 'apt-transport-https'
-apt_repository "dart" do
-  uri "https://storage.googleapis.com/download.dartlang.org/linux/debian"
-  distribution ''
-  components ['stable', 'main']
-  key 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
-  trusted true # TODO: Fix this
+## Install Haxe
+apt_repository 'latest-dart' do
+  uri          'ppa:dartsim/ppa'
 end
-package ['dart']
+package 'libdart6-all-dev'
 
 ## Install D lang
 apt_repository "dlang" do
-  uri "http://master.dl.sourceforge.net/project/d-apt/"
-  distribution ''
-  components ['d-apt', 'main']
+  uri "http://netcologne.dl.sourceforge.net/project/d-apt/"
+  distribution 'd-apt'
+  components ['main']
   key 'https://dlang.org/d-keyring.gpg'
   trusted true # TODO: Fix this
 end
-package ['dmd-bin']
+package ['dmd-compiler', 'dub']
 
 ## Install SBCL
 tar_extract "http://prdownloads.sourceforge.net/sbcl/sbcl-#{node[:sbcl][:version]}-x86-64-linux-binary.tar.bz2" do
@@ -471,6 +546,7 @@ remote_file '/tmp/kotlin.zip' do
 end
 zipfile '/tmp/kotlin.zip' do
   into '/usr/local'
+  not_if { ::Dir.exists? '/usr/local/kotlinc' }
 end
 
 ## Install Groovy
@@ -525,7 +601,6 @@ remote_file '/tmp/haskellstack.sh' do
   source 'https://get.haskellstack.org/'
   notifies :run, "execute[install-haskell]", :immediately
 end
-
 execute 'install-haskell' do
   user 'root'
   command <<-EOH
@@ -558,13 +633,6 @@ end
 
 ## Install pascal
 package 'fpc'
-
-# Racket 6.10.1 is crashing during execution. Installing previous version for the time being
-# ## Install Racket
-# apt_repository 'latest-racket' do
-#   uri          'ppa:plt/racket'
-# end
-# package 'racket'
 
 ## Install Racket
 remote_file '/tmp/racket-linux.sh' do
