@@ -29,7 +29,9 @@ default['java']['additional_libraries'] = ['http://search.maven.org/remoteconten
 	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar',
 	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta1/httpclient5-5.0-beta1.jar',
 	'http://central.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar',
-	'http://central.maven.org/maven2/com/thaiopensource/jing/20091111/jing-20091111.jar']
+	'http://central.maven.org/maven2/com/thaiopensource/jing/20091111/jing-20091111.jar',
+	'https://search.maven.org/remotecontent?filepath=junit/junit/4.13-beta-1/junit-4.13-beta-1.jar',
+	'https://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest/2.1-rc3/hamcrest-2.1-rc3.jar']
 
 default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechecker-install-essentials/stanford-corenlp-full-2013-06-20.zip",
 	"https://s3.amazonaws.com/codechecker-install-essentials/stanford-classifier-2013-06-20.zip",
@@ -149,7 +151,7 @@ default['kotlin']['version'] = '1.3.0'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '1.0.1'
+default['julia']['version'] = '1.0.2'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
