@@ -151,7 +151,7 @@ default['kotlin']['version'] = '1.3.0'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '1.0.2'
+default['julia']['version'] = '1.0.3'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
