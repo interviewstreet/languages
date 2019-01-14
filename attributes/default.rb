@@ -42,7 +42,7 @@ default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechec
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
-default['go']['version'] = '1.11'
+default['go']['version'] = '1.11.4'
 default['go']['install_dir'] = '/usr/local'
 default['go']['gopath'] = '/user/local/go'
 default['go']['gobin'] = '/user/local/go/bin'
@@ -50,29 +50,29 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
-default['nodejs']['version'] = '8.11.4'
-default['nodejs']['binary']['checksum'] = '85ea7cbb5bf624e130585bfe3946e99c85ce5cb84c2aee474038bdbe912f908c'
+default['nodejs']['version'] = '10.15.0'
+default['nodejs']['binary']['checksum'] = '4ee8503c1133797777880ebf75dcf6ae3f9b894c66fd2d5da507e407064c13b5'
 default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
 
 # Scala
-default["scala"]["version"] = "2.12.6"
+default["scala"]["version"] = "2.12.8"
 default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{default[:scala][:version]}.tgz"
-default["scala"]["checksum"] = "1ac7444c5a85ed1ea45db4a268ee9ea43adf80e7f5724222863afb5492883416"
+default["scala"]["checksum"] = "440ea00c818fd88c5261dd85889711a9d1f7e6a39caa475fcf0583ab57db80a3"
 default['scala']['home'] = '/usr/local/scala'
-default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M24/scalaz-core_2.12-7.3.0-M24.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/1.2.0/cats-macros_2.12-1.2.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-kernel_2.12/1.2.0/cats-kernel_2.12-1.2.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.2.0/cats-core_2.12-1.2.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-free_2.12/1.2.0/cats-free_2.12-1.2.0.jar)
+default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M27/scalaz-core_2.12-7.3.0-M27.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/1.4.0/cats-macros_2.12-1.4.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-kernel_2.12/1.5.0/cats-kernel_2.12-1.5.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.5.0/cats-core_2.12-1.5.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-free_2.12/1.5.0/cats-free_2.12-1.5.0.jar)
 
-default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.12/0.13.4/algebird-core_2.12-0.13.4.jar
-	http://central.maven.org/maven2/com/twitter/algebird-util_2.12/0.13.4/algebird-util_2.12-0.13.4.jar
-	http://central.maven.org/maven2/com/twitter/algebird-bijection_2.12/0.13.4/algebird-bijection_2.12-0.13.4.jar
-	http://central.maven.org/maven2/com/twitter/algebird-test_2.12/0.13.4/algebird-test_2.12-0.13.4.jar
+default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.12/0.13.5/algebird-core_2.12-0.13.5.jar
+	http://central.maven.org/maven2/com/twitter/algebird-util_2.12/0.13.5/algebird-util_2.12-0.13.5.jar
+	http://central.maven.org/maven2/com/twitter/algebird-bijection_2.12/0.13.5/algebird-bijection_2.12-0.13.5.jar
+	http://central.maven.org/maven2/com/twitter/algebird-test_2.12/0.13.5/algebird-test_2.12-0.13.5.jar
 	http://central.maven.org/maven2/com/twitter/algebird_2.11/0.12.2/algebird_2.11-0.12.2.jar)
 
 # .Net
-default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.1.4'
+default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.2.1'
 
 # Mono Csharp
 default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libmono-system-design4.0-cil
@@ -81,7 +81,7 @@ default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libm
 	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil)
 
 # PHP
-default['php']['additional_libraries'] = %w(php7.2-cli php7.2-json php7.2-gmp php7.2-common php7.2-mbstring php7.2-bcmath php7.2-ctype php7.2-xml)
+default['php']['additional_libraries'] = %w(php7.3-cli php7.3-json php7.3-gmp php7.3-common php7.3-mbstring php7.3-bcmath php7.3-ctype php7.3-xml)
 
 # R
 default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class g.data cluster
@@ -98,15 +98,15 @@ default['perl']['additional_ml_libraries'] = ['Text::NSP', 'PDL']
 default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'Stats', 'XML::Class', 'Math::Matrix', 'Math::Vector']
 
 # Nim
-default['nim']['version'] = '0.18.0'
+default['nim']['version'] = '0.19.0'
 default['nim']['home'] = '/usr/local/nim'
 
 # MIT Scheme
-default['mitscheme']['version'] = '9.2'
+default['mitscheme']['version'] = '10.1.4'
 default['mitscheme']['home'] = '/tmp/mitscheme'
 
 # Ruby
-default['ruby']['version'] = '2.5.1'
+default['ruby']['version'] = '2.6.0'
 default['ruby']['home'] = '/usr/local/ruby'
 
 # Rust
@@ -141,13 +141,13 @@ default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4
 default['pypy']['additional_ml_libraries'] = ['numpy', 'sympy', 'nltk']
 
 # SBCL
-default['sbcl']['version'] = '1.4.10'
+default['sbcl']['version'] = '1.4.15'
 
 # Lolcode
 default['lolcode']['home'] = '/usr/local/lolcode'
 
 # Kotlin
-default['kotlin']['version'] = '1.3.0'
+default['kotlin']['version'] = '1.3.11'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
@@ -184,9 +184,9 @@ default['clojure']['additional_libraries'] = [
 	{name: 'algo.generic', version: '0.1.3'},
     {name: 'algo.monads', version: '0.1.6'},
     {name: 'core.logic', version: '0.8.11'},
-    {name: 'data.avl', version: '0.0.17'},
+    {name: 'data.avl', version: '0.0.18'},
     {name: 'data.int-map', version: '0.2.4'},
     {name: 'data.json', version: '0.2.6'},
     {name: 'data.priority-map', version: '0.0.10'},
     {name: 'data.xml', version: '0.2.0-alpha5'},
-    {name: 'spec.alpha', version: '0.2.168'}]
+    {name: 'spec.alpha', version: '0.2.176'}]
