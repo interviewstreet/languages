@@ -155,9 +155,9 @@ default['julia']['version'] = '1.0.3'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
-default['groovy']['version'] = "2.5.2"
+default['groovy']['version'] = "2.5.5"
 default['groovy']['url'] = "https://dl.bintray.com/groovy/maven/apache-groovy-sdk-#{default[:groovy][:version]}.zip"
-default['groovy']['checksum'] = "82cf4f424a431b0ebab97e7302cfbe7c0b15cd5d2ff87cb0d9af5003e2ea247b"
+default['groovy']['checksum'] = "ca8aecb5622b7d760e58afc47e2966740fa3c20cd5523ff1786b60f22c4e4ce9"
 
 # Haxe
 default['haxe']['lib_home'] = '/usr/local/haxelibs'
