@@ -175,7 +175,7 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 	base-unicode-symbols basic-prelude bifunctors).join(" ")
 
 # Ocaml
-default['ocaml']['version'] = '4.07.0'
+default['ocaml']['version'] = '4.07.1'
 default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
