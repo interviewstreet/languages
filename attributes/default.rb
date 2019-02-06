@@ -92,7 +92,7 @@ default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class
 
 # Perl
 default['perl']['ml_home'] = '/var/ml/perl'
-default['perl']['additional_libraries'] = ['JSON', 'XML::Parser', 'Set::Scalar', 'Math::SparseVector', 'Math::SparseMatrix']
+default['perl']['additional_libraries'] = ['JSON::XS', 'XML::Parser', 'Set::Scalar', 'Math::SparseVector', 'Math::SparseMatrix']
 default['perl']['additional_ml_libraries'] = ['Text::NSP', 'PDL']
 # Perl 6
 default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'Stats', 'XML::Class', 'Math::Matrix', 'Math::Vector']
@@ -118,14 +118,15 @@ default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
 # Python 2 & 3
+override['poise-python']['options']['pip_version'] = '18.0'
 default['poise-python']['install_python2'] = true
 default['poise-python']['install_python3'] = true
 default['poise-python']['install_pypy'] = false
 
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'
-default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4)
-default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels pycrypto)
+default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4 pycrypto cryptography)
+default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
 default['pypy']['version'] = 'pypy2-v6.0.0'
@@ -151,7 +152,7 @@ default['kotlin']['version'] = '1.3.11'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '1.0.3'
+default['julia']['version'] = '1.1.0'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
@@ -169,7 +170,7 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 	bytestring array arrow-list
 	regex-applicative regex-base regex-compat regex-pcre-builtin
 	regex-posix regex-tdfa
-	generic-aeson parsec unordered-containers attoparsec
+	parsec unordered-containers attoparsec
 	comonad deepseq dlist either matrix
 	MemoTrie threads monad-memo memoize
 	base-unicode-symbols basic-prelude bifunctors).join(" ")

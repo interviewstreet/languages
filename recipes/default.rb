@@ -339,9 +339,6 @@ ruby_build_ruby node[:ruby][:version] do
   prefix_path node[:ruby][:home]
 end
 
-## Install Python 2 & 3
-include_recipe 'poise-python'
-
 ## Install Python 2 packages
 python_runtime '2'
 python_package node[:python][:additional_libraries]
@@ -361,7 +358,7 @@ python_package node[:python][:additional_libraries]
 ## Install Python 3 ML virtualenv
 python_virtualenv node[:python3][:ml_home] do
   pip_version '18.0'
-  python '/usr/bin/python3'
+  python '/usr/bin/python3.7'
 end
 python_package (node[:python][:additional_libraries] + node[:python][:additional_ml_libraries]) do
   virtualenv node[:python3][:ml_home]
@@ -480,7 +477,7 @@ remote_file '/tmp/rustup.sh' do
 end
 
 execute 'install-rust' do
-  command '/tmp/rustup.sh --yes'
+  command '/tmp/rustup.sh -y'
   user 'root'
   action :nothing
 end
@@ -490,20 +487,24 @@ execute 'cache-rust-libraries' do
   user 'root'
   cwd '/usr/local/lib'
   command <<-EOH
+    export PATH="$HOME/.cargo/bin:$PATH"
     cargo new rust_hello_world --bin
     echo '#{node[:rust][:additional_libraries]}' | cat >> /usr/local/lib/rust_hello_world/Cargo.toml
     cd /usr/local/lib/rust_hello_world && cargo build --release
   EOH
 end
 
-## Install Haxe
-apt_repository 'latest-dart' do
-  uri          'ppa:dartsim/ppa'
+## Install Dart
+apt_repository "latest-dart" do
+  uri "https://storage.googleapis.com/download.dartlang.org/linux/debian"
+  distribution 'stable'
+  components ['main']
+  key 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 end
-package 'libdart6-all-dev'
+package 'dart'
 
 ## Install D lang
-apt_repository "dlang" do
+apt_repository "latest-dlang" do
   uri "http://netcologne.dl.sourceforge.net/project/d-apt/"
   distribution 'd-apt'
   components ['main']
@@ -601,6 +602,7 @@ remote_file '/tmp/haskellstack.sh' do
   source 'https://get.haskellstack.org/'
   notifies :run, "execute[install-haskell]", :immediately
 end
+
 execute 'install-haskell' do
   user 'root'
   command <<-EOH
@@ -611,10 +613,24 @@ execute 'install-haskell' do
     stack --stack-root #{node[:haskell][:home]} update
     # Setting up ghc compiler
     stack --stack-root #{node[:haskell][:home]} setup
+  EOH
+  action :nothing
+end
+
+execute 'install-haskell-packages-allow-newer' do
+  user 'root'
+  command <<-EOH
+    echo 'allow-newer: true' >> /usr/local/haskell/config.yaml
+  EOH
+  not_if 'cat /usr/local/haskell/config.yaml | grep "allow-newer"'
+end
+
+execute 'install-haskell-packages' do
+  user 'root'
+  command <<-EOH
     # Install packages
     stack --stack-root #{node[:haskell][:home]} install #{node[:haskell][:additional_libraries]}
   EOH
-  action :nothing
 end
 
 ## Install OCaml
