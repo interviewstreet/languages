@@ -78,7 +78,7 @@ default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.2.1'
 default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libmono-system-design4.0-cil
 	libmono-system-data-datasetextensions4.0-cil libmono-sqlite4.0-cil
 	libnewtonsoft-json-cil-dev libmono-system-net-http4.0-cil
-	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil)
+	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil System.Xml.Linq.dll)
 
 # PHP
 default['php']['additional_libraries'] = %w(php7.3-cli php7.3-json php7.3-gmp php7.3-common php7.3-mbstring php7.3-bcmath php7.3-ctype php7.3-xml)

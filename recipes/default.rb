@@ -208,7 +208,7 @@ apt_repository 'latest-mono' do
   keyserver 'keyserver.ubuntu.com'
   key '3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF'
 end
-package ['mono-devel', 'mono-complete', 'ca-certificates-mono']
+package ['mono-devel', 'mono-complete', 'ca-certificates-mono', 'System.Xml.Linq -Version 3.5.21022.801']
 package node['mono']['additional_libraries']
 
 ## VBNC
