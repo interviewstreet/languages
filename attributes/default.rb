@@ -27,7 +27,7 @@ default['java']['additional_libraries'] = ['http://search.maven.org/remoteconten
 	'http://search.maven.org/remotecontent?filepath=com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar',
 	'http://search.maven.org/remotecontent?filepath=org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar',
 	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar',
-	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta1/httpclient5-5.0-beta1.jar',
+	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta5/httpclient5-5.0-beta5.jar',
 	'http://central.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar',
 	'http://central.maven.org/maven2/com/thaiopensource/jing/20091111/jing-20091111.jar',
 	'https://search.maven.org/remotecontent?filepath=junit/junit/4.13-beta-1/junit-4.13-beta-1.jar',
@@ -46,13 +46,13 @@ default['go']['version'] = '1.13'
 default['go']['install_dir'] = '/usr/local'
 default['go']['gopath'] = '/user/local/go'
 default['go']['gobin'] = '/user/local/go/bin'
-default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 'strings', 'math', 'container/heap', 'container/list']
+default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 'strings', 'math', 'container/heap', 'container/list' , 'net/http']
 
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
 default['nodejs']['version'] = '10.16.3'
 default['nodejs']['binary']['checksum'] = 'd2271fd8cf997fa7447d638dfa92749ff18ca4b0d796bf89f2a82bf7800d5506'
-default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
+default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest','request','axios'].map {|item| {'name' => item}}
 
 # Scala
 default["scala"]["version"] = "2.13.0"
@@ -125,7 +125,7 @@ default['poise-python']['install_pypy'] = false
 
 default['python']['ml_home'] = '/var/ml/python'
 default['python3']['ml_home'] = '/var/ml/python3'
-default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4 pycrypto cryptography)
+default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4 pycrypto cryptography requests urllib3)
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
