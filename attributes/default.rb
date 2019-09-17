@@ -42,7 +42,7 @@ default['java']['additional_ml_libraries'] = ["https://s3.amazonaws.com/codechec
 	"http://math.nist.gov/javanumerics/jama/Jama-1.0.3.jar"]
 
 # Go Lang
-default['go']['version'] = '1.11.4'
+default['go']['version'] = '1.13'
 default['go']['install_dir'] = '/usr/local'
 default['go']['gopath'] = '/user/local/go'
 default['go']['gobin'] = '/user/local/go/bin'
@@ -50,20 +50,20 @@ default['go']['packages'] = ['encoding/json', 'encoding/csv', 'encoding/xml', 's
 
 # NodeJS
 default['nodejs']['install_method'] = 'binary'
-default['nodejs']['version'] = '10.15.0'
-default['nodejs']['binary']['checksum'] = '4ee8503c1133797777880ebf75dcf6ae3f9b894c66fd2d5da507e407064c13b5'
+default['nodejs']['version'] = '10.16.3'
+default['nodejs']['binary']['checksum'] = 'd2271fd8cf997fa7447d638dfa92749ff18ca4b0d796bf89f2a82bf7800d5506'
 default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore', 'lodash', 'jquery', 'bignumber.js', 'babel-cli', 'babel-preset-latest'].map {|item| {'name' => item}}
 
 # Scala
-default["scala"]["version"] = "2.12.8"
+default["scala"]["version"] = "2.13.0"
 default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{default[:scala][:version]}.tgz"
-default["scala"]["checksum"] = "440ea00c818fd88c5261dd85889711a9d1f7e6a39caa475fcf0583ab57db80a3"
+default["scala"]["checksum"] = "8beb410ad9bfc3087589d13f07f062fba0091cf1c4e8534c334e28d1213ed675"
 default['scala']['home'] = '/usr/local/scala'
 default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M27/scalaz-core_2.12-7.3.0-M27.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/1.4.0/cats-macros_2.12-1.4.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-kernel_2.12/1.5.0/cats-kernel_2.12-1.5.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/1.5.0/cats-core_2.12-1.5.0.jar
-	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-free_2.12/1.5.0/cats-free_2.12-1.5.0.jar)
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/2.0.0/cats-macros_2.12-2.0.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-kernel_2.12/2.0.0/cats-kernel_2.12-2.0.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-core_2.12/2.0.0/cats-core_2.12-2.0.0.jar
+	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-free_2.12/2.0.0/cats-free_2.12-2.0.0.jar)
 
 default['scala']['twitter_libraries'] = %w(http://central.maven.org/maven2/com/twitter/algebird-core_2.12/0.13.5/algebird-core_2.12-0.13.5.jar
 	http://central.maven.org/maven2/com/twitter/algebird-util_2.12/0.13.5/algebird-util_2.12-0.13.5.jar
@@ -98,27 +98,27 @@ default['perl']['additional_ml_libraries'] = ['Text::NSP', 'PDL']
 default['perl6']['additional_libraries'] = ['JSON::Class', 'Math::Constants', 'Stats', 'XML::Class', 'Math::Matrix', 'Math::Vector']
 
 # Nim
-default['nim']['version'] = '0.19.0'
+default['nim']['version'] = '0.20.2'
 default['nim']['home'] = '/usr/local/nim'
 
 # MIT Scheme
-default['mitscheme']['version'] = '10.1.4'
+default['mitscheme']['version'] = '10.1.10'
 default['mitscheme']['home'] = '/tmp/mitscheme'
 
 # Ruby
-default['ruby']['version'] = '2.6.0'
+default['ruby']['version'] = '2.6.4'
 default['ruby']['home'] = '/usr/local/ruby'
 
 # Rust
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
-default['racket']['version'] = '7.1'
+default['racket']['version'] = '7.4'
 default['racket']['home'] = '/usr/local/racket'
 default['racket']['url'] = "https://download.racket-lang.org/releases/#{default[:racket][:version]}/installers/racket-#{default[:racket][:version]}-x86_64-linux.sh"
 
 # Python 2 & 3
-override['poise-python']['options']['pip_version'] = '18.0'
+override['poise-python']['options']['pip_version'] = '19.2.3'
 default['poise-python']['install_python2'] = true
 default['poise-python']['install_python3'] = true
 default['poise-python']['install_pypy'] = false
@@ -129,11 +129,11 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
-default['pypy']['version'] = 'pypy2-v6.0.0'
+default['pypy']['version'] = 'pypy2-v7.1.1'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = 'pypy3-v6.0.0'
+default['pypy3']['version'] = 'pypy3-v7.0.0'
 default['pypy3']['home'] = '/usr/local/pypy3'
 #default['pypy3']['url'] = "https://bitbucket.org/squeaky/portable-pypy/downloads/#{node[:pypy3][:version]}-linux_x86_64-portable.tar.bz2"
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
@@ -142,23 +142,23 @@ default['pypy']['additional_libraries'] = ['requests[security]', 'beautifulsoup4
 default['pypy']['additional_ml_libraries'] = ['numpy', 'sympy', 'nltk']
 
 # SBCL
-default['sbcl']['version'] = '1.4.15'
+default['sbcl']['version'] = '1.4.2'
 
 # Lolcode
 default['lolcode']['home'] = '/usr/local/lolcode'
 
 # Kotlin
-default['kotlin']['version'] = '1.3.11'
+default['kotlin']['version'] = '1.3.50'
 
 # Julia
 default['julia']['home'] = '/usr/local/julia'
-default['julia']['version'] = '1.1.0'
+default['julia']['version'] = '1.2.0'
 default['julia']['url'] = "https://julialang-s3.julialang.org/bin/linux/x64/#{default[:julia][:version].match('\d+.\d+')[0]}/julia-#{default[:julia][:version]}-linux-x86_64.tar.gz"
 
 # Groovy
-default['groovy']['version'] = "2.5.5"
+default['groovy']['version'] = "2.5.8"
 default['groovy']['url'] = "https://dl.bintray.com/groovy/maven/apache-groovy-sdk-#{default[:groovy][:version]}.zip"
-default['groovy']['checksum'] = "ca8aecb5622b7d760e58afc47e2966740fa3c20cd5523ff1786b60f22c4e4ce9"
+default['groovy']['checksum'] = "37e030bbb14746869e822702db1c6dd57d7d077ceef4c12938b1c6c4d341f459"
 
 # Haxe
 default['haxe']['lib_home'] = '/usr/local/haxelibs'
@@ -176,7 +176,7 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 	base-unicode-symbols basic-prelude bifunctors).join(" ")
 
 # Ocaml
-default['ocaml']['version'] = '4.07.1'
+default['ocaml']['version'] = '4.08.0'
 default['ocaml']['home'] = '/usr/local/lib/ocaml'
 default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
 
@@ -185,9 +185,9 @@ default['clojure']['additional_libraries'] = [
 	{name: 'algo.generic', version: '0.1.3'},
     {name: 'algo.monads', version: '0.1.6'},
     {name: 'core.logic', version: '0.8.11'},
-    {name: 'data.avl', version: '0.0.18'},
+    {name: 'data.avl', version: '0.1.0'},
     {name: 'data.int-map', version: '0.2.4'},
     {name: 'data.json', version: '0.2.6'},
     {name: 'data.priority-map', version: '0.0.10'},
-    {name: 'data.xml', version: '0.2.0-alpha5'},
+    {name: 'data.xml', version: '0.0.8'},
     {name: 'spec.alpha', version: '0.2.176'}]
