@@ -215,18 +215,20 @@ package node['mono']['additional_libraries']
 package 'mono-vbnc'
 
 ## PHP7.2
-apt_repository 'latest-php7.2' do
+apt_repository 'latest-php7' do
   uri          'ppa:ondrej/php'
 end
-package 'php7.2'
+package 'php7.3'
 
 ## Install PHP7.2
 package node['php']['additional_libraries']
 
-remote_file '/usr/local/bin/phpunit' do
-  user 'root'
-  mode '0755'
-  source 'https://phar.phpunit.de/phpunit.phar'
+# Install php packages via composer
+include_recipe 'composer'
+node[:php][:additional_composer_libraries].each do |library|
+  composer_install_global library do
+    action :install
+  end
 end
 
 ## Install Clisp
@@ -332,11 +334,19 @@ execute 'build-mitscheme' do
   action :nothing
 end
 
-
 ## Install Ruby
 include_recipe 'ruby_build'
 ruby_build_ruby node[:ruby][:version] do
   prefix_path node[:ruby][:home]
+  not_if { ::Dir.exists? node[:ruby][:home] }
+  notifies :run, "execute[install-ruby-gems]", :immediately
+end
+
+execute 'install-ruby-gems' do
+  user 'root'
+  cwd node[:ruby][:home]}
+  command "bin/gem install #{node[:ruby][:additional_libraries].join(' ')}"
+  action :nothing
 end
 
 ## Install Python 2 packages
