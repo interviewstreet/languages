@@ -27,6 +27,8 @@ default['java']['additional_libraries'] = ['http://search.maven.org/remoteconten
 	'http://search.maven.org/remotecontent?filepath=com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar',
 	'http://search.maven.org/remotecontent?filepath=org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar',
 	'https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar',
+	'https://search.maven.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.0-beta8/httpcore5-5.0-beta8.jar',
+	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/httpasyncclient/4.1.4/httpasyncclient-4.1.4.jar',
 	'https://search.maven.org/remotecontent?filepath=org/apache/httpcomponents/client5/httpclient5/5.0-beta5/httpclient5-5.0-beta5.jar',
 	'http://central.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar',
 	'http://central.maven.org/maven2/com/thaiopensource/jing/20091111/jing-20091111.jar',
@@ -78,11 +80,11 @@ default['dotnetcore']['package']['name'] = 'dotnet-sdk-2.2.1'
 default['mono']['additional_libraries'] = %w(libmono-system-numerics4.0-cil libmono-system-design4.0-cil
 	libmono-system-data-datasetextensions4.0-cil libmono-sqlite4.0-cil
 	libnewtonsoft-json-cil-dev libmono-system-net-http4.0-cil
-	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil)
+	libmono-system-net-http-formatting4.0-cil libmono-system-net-http-webrequest4.0-cil libmono-system-net4.0-cil)
 
 # PHP
-default['php']['additional_libraries'] = %w(php7.3-cli php7.3-json php7.3-gmp php7.3-common php7.3-mbstring php7.3-bcmath php7.3-ctype php7.3-xml)
-
+default['php']['additional_libraries'] = %w(php7.3-cli php7.3-json php7.3-gmp php7.3-common php7.3-mbstring php7.3-bcmath php7.3-ctype php7.3-xml php-http-request2 php-guzzlehttp-promises)
+default['php']['additional_composer_libraries'] = ['phpunit/phpunit', 'guzzlehttp/guzzle', 'guzzlehttp/psr7', 'rmccue/requests', 'php-http/httplug']
 # R
 default['r']['additional_libraries'] = %w(foreach base64enc bayesm Formula class g.data cluster
 	numDeriv scales codetools permute date spatial psy digest pwt statmod stringr
@@ -108,7 +110,7 @@ default['mitscheme']['home'] = '/tmp/mitscheme'
 # Ruby
 default['ruby']['version'] = '2.6.4'
 default['ruby']['home'] = '/usr/local/ruby'
-
+default['ruby']['additional_libraries'] = ['json', 'xml-simple', 'http', 'faraday', 'rest-client', 'httpclient', 'httparty']
 # Rust
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
