@@ -246,6 +246,7 @@ apt_repository "latest-r-base" do
   distribution node['lsb']['codename'] + '-cran35/'
   keyserver 'keyserver.ubuntu.com'
   key 'E084DAB9'
+  trusted true
 end
 package ['r-base', 'r-base-dev']
 
@@ -261,7 +262,6 @@ execute "update-r-lang" do
 end
 
 package 'libxml2-dev'
-
 node[:r][:additional_libraries].each do |library|
   execute "install-r-#{library}" do
     user 'root'
@@ -344,7 +344,7 @@ end
 
 execute 'install-ruby-gems' do
   user 'root'
-  cwd node[:ruby][:home]}
+  cwd node[:ruby][:home]
   command "bin/gem install #{node[:ruby][:additional_libraries].join(' ')}"
   action :nothing
 end
@@ -355,7 +355,7 @@ python_package node[:python][:additional_libraries]
 
 ## Install Python 2 ML virtualenv
 python_virtualenv node[:python][:ml_home] do
-  pip_version '18.0'
+  python '/usr/bin/python2'
 end
 python_package (node[:python][:additional_libraries] + node[:python][:additional_ml_libraries]) do
   virtualenv node[:python][:ml_home]
@@ -367,7 +367,6 @@ python_package node[:python][:additional_libraries]
 
 ## Install Python 3 ML virtualenv
 python_virtualenv node[:python3][:ml_home] do
-  pip_version '18.0'
   python '/usr/bin/python3.7'
 end
 python_package (node[:python][:additional_libraries] + node[:python][:additional_ml_libraries]) do

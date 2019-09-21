@@ -1,8 +1,8 @@
 # C & C++
 default['cpp']['ml_home'] = '/var/ml/cpp'
-default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.23',
+default['cpp']['additional_ml_libraries'] = [{'name' => 'libsvm-3.24',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/libsvm.cgi?+http://www.csie.ntu.edu.tw/~cjlin/libsvm+tar.gz'},
-	{'name' => 'liblinear-2.21',
+	{'name' => 'liblinear-2.30',
 		'url' => 'http://www.csie.ntu.edu.tw/~cjlin/cgi-bin/liblinear.cgi?+http://www.csie.ntu.edu.tw/~cjlin/liblinear+tar.gz'}]
 
 # Java
@@ -59,7 +59,7 @@ default['nodejs']['npm_packages'] = ['coffee-script', 'typescript', 'underscore'
 # Scala
 default["scala"]["version"] = "2.13.0"
 default["scala"]["url"] = "http://www.scala-lang.org/files/archive/scala-#{default[:scala][:version]}.tgz"
-default["scala"]["checksum"] = "8beb410ad9bfc3087589d13f07f062fba0091cf1c4e8534c334e28d1213ed675"
+default["scala"]["checksum"] = "f7d4653325bf516f9a28572f7401c2b0e5fab8e0a5d65837eb1df70e6252e089"
 default['scala']['home'] = '/usr/local/scala'
 default['scala']['additional_libraries'] = %w(https://search.maven.org/remotecontent?filepath=org/scalaz/scalaz-core_2.12/7.3.0-M27/scalaz-core_2.12-7.3.0-M27.jar
 	https://search.maven.org/remotecontent?filepath=org/typelevel/cats-macros_2.12/2.0.0/cats-macros_2.12-2.0.0.jar
@@ -131,11 +131,11 @@ default['python']['additional_libraries'] = %w(requests[security] beautifulsoup4
 default['python']['additional_ml_libraries'] = %w(numpy scipy sympy scikit-learn nltk pandas statsmodels)
 
 # Pypy 2
-default['pypy']['version'] = 'pypy2-v7.1.1'
+default['pypy']['version'] = 'pypy2.7-v7.1.1'
 default['pypy']['home'] = '/usr/local/pypy'
 default['pypy']['ml_home'] = '/var/ml/pypy'
 # Pypy 3
-default['pypy3']['version'] = 'pypy3-v7.0.0'
+default['pypy3']['version'] = 'pypy3.6-v7.1.1'
 default['pypy3']['home'] = '/usr/local/pypy3'
 #default['pypy3']['url'] = "https://bitbucket.org/squeaky/portable-pypy/downloads/#{node[:pypy3][:version]}-linux_x86_64-portable.tar.bz2"
 default['pypy3']['ml_home'] = '/var/ml/pypy3'
