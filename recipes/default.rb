@@ -180,14 +180,14 @@ node[:scala][:twitter_libraries]. each do |library|
   end
 end
 
-## Install sbt
-apt_repository "sbt" do
-  uri "https://dl.bintray.com/sbt/debian"
-  distribution '/'
-  keyserver "keyserver.ubuntu.com"
-  key '2EE0EA64E40A89B84B2DF73499E82A75642AC823'
-end
-package ['sbt']
+# ## Install sbt
+# apt_repository "sbt" do
+#   uri "https://dl.bintray.com/sbt/debian"
+#   distribution '/'
+#   keyserver "keyserver.ubuntu.com"
+#   key '2EE0EA64E40A89B84B2DF73499E82A75642AC823'
+# end
+# package ['sbt']
 
 ## Install Go Lang
 include_recipe 'golang::default'
@@ -214,7 +214,7 @@ package node['mono']['additional_libraries']
 ## VBNC
 package 'mono-vbnc'
 
-## PHP7.2
+## PHP7.3
 apt_repository 'latest-php7' do
   uri          'ppa:ondrej/php'
 end
@@ -630,6 +630,7 @@ execute 'install-haskell-packages-allow-newer' do
   user 'root'
   command <<-EOH
     echo 'allow-newer: true' >> /usr/local/haskell/config.yaml
+    chmod 644 /usr/local/haskell/config.yaml
   EOH
   not_if 'cat /usr/local/haskell/config.yaml | grep "allow-newer"'
 end
@@ -643,16 +644,16 @@ execute 'install-haskell-packages' do
 end
 
 ## Install OCaml
-package ['opam']
+package ['opam', 'bubblewrap']
 execute 'install-ocaml-packages' do
   user 'root'
   command <<-EOH
     opam init --yes --root=#{node[:ocaml][:home]}
     eval `opam config env --root=#{node[:ocaml][:home]}`
     opam update --yes
-    opam switch --yes #{node[:ocaml][:version]}
+    opam install opam-devel --yes
+    opam switch create --yes #{node[:ocaml][:version]}
     opam install --yes #{node[:ocaml][:additional_libraries]}
-    opam upgrade --yes
   EOH
 end
 
@@ -682,6 +683,7 @@ end
 ## Install Octave
 apt_repository 'latest-octave' do
   uri          'ppa:octave/stable'
+  distribution 'xenial' # Octave bionic does not have a Release file
 end
 package ['octave', 'octave-image']
 
