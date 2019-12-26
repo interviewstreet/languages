@@ -184,7 +184,7 @@ default['haskell']['additional_libraries'] = %w(base-prelude logict pipes hashta
 # Ocaml
 default['ocaml']['version'] = '4.09.0'
 default['ocaml']['home'] = '/usr/local/lib/ocaml'
-default['ocaml']['additional_libraries'] = %w(core async core_extended ocamlfind).join(" ")
+default['ocaml']['additional_libraries'] = %w(core async core_extended cohttp-async cohttp yojson xmlm ocamlfind).join(" ")
 
 # Clojure
 default['clojure']['additional_libraries'] = [
