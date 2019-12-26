@@ -486,8 +486,16 @@ remote_file '/tmp/rustup.sh' do
 end
 
 execute 'install-rust' do
-  command '/tmp/rustup.sh -y'
   user 'root'
+  environment ({
+    'CARGO_HOME' => node[:rust][:cargo_path],
+    'RUSTUP_HOME' => node[:rust][:rustup_path]
+  })
+  command <<-EOH
+    mkdir -p #{node[:rust][:cargo_path]}
+    mkdir -p #{node[:rust][:rustup_path]}
+    /tmp/rustup.sh -y
+  EOH
   action :nothing
 end
 

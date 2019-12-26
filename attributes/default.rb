@@ -114,6 +114,8 @@ default['ruby']['version'] = '2.6.4'
 default['ruby']['home'] = '/usr/local/ruby'
 default['ruby']['additional_libraries'] = ['json', 'xml-simple', 'http', 'faraday', 'rest-client', 'httpclient', 'httparty']
 # Rust
+default['rust']['cargo_path'] = '/usr/local/cargo'
+default['rust']['rustup_path'] = '/usr/local/rustup'
 default['rust']['additional_libraries'] = %w(num serde serde_json serde_derive rustc-serialize regex time text_io rand).join(" = \"*\"\n") + (' = "*"')
 
 # Racket
